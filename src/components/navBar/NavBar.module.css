@@ -1,0 +1,23 @@
+/* start navegation bar */
+nav {
+    display: flex;
+    align-items: center;
+    padding: 4vh 8vw 0;
+}
+nav > img {
+    height: 8vh;
+}
+ul {
+    display: flex;
+    justify-content: space-between;
+    width: 30vw;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+li {
+    list-style: none;
+    font-size: 3vh;
+    cursor: pointer;
+}
+/* end navegation bar */

@@ -1,0 +1,65 @@
+.container {
+  /* color: var(--fontColor); */
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.container > input {
+  display: none;
+}
+
+/* start icon style */
+.radioButton {
+  display: flex;
+  align-items: center;
+}
+
+.biSearchType {
+  background-color: rgba(255, 255, 255, 15%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  padding: 3px;
+  margin: 10px;
+  position: relative;
+}
+
+.biSearchType::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+}
+
+.container > input:checked + .radioButton > .biSearchType {
+  background-color: var(--blue-color);
+}
+
+.label {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.container > input:checked + .radioButton > .label {
+  color: var(--blue-color);
+}
+
+.biSearchType[icon="audio"]::after {
+  content: url("../../assets/blue_audio_icon.svg");
+}
+
+.biSearchType[icon="video"]::after {
+  content: url("../../assets/blue_video_icon.svg");
+}
+
+.container > input:checked + .radioButton > .biSearchType[icon="audio"]::after {
+  content: url("../../assets/white_audio_icon.svg");
+}
+
+.container > input:checked + .radioButton > .biSearchType[icon="video"]::after {
+  content: url("../../assets/white_video_icon.svg");
+}
+/* end icon style */
