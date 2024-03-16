@@ -3,6 +3,7 @@ import styles from "./Main.module.css"
 import footerImg from "../assets/footer.svg"
 import NavBar from '../components/navBar/NavBar'
 import RadioButton from '../components/radioButton/RadioButton'
+import UploadVideo from '../components/uploadVideo/UploadVideo'
 
 const Main = () => {
     return (
@@ -12,6 +13,7 @@ const Main = () => {
                 <h1>Video Content Search</h1>
                 <p>The leading AI-powered video content search platform.</p>
                 <section>
+                    <UploadVideo/>
                     <input type="text" id={styles.textQuery} placeholder="Write your text here..." />
                     <div className={styles.container}>
                         {/* start search type radio buttons */}
