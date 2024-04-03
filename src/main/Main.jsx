@@ -1,4 +1,5 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
+import axios from 'axios';
 import styles from "./Main.module.css"
 import footerImg from "../assets/footer.svg"
 import NavBar from '../components/navBar/NavBar'
@@ -6,6 +7,20 @@ import RadioButton from '../components/radioButton/RadioButton'
 import UploadVideo from '../components/uploadVideo/UploadVideo'
 
 const Main = () => {
+    const [videoLink, setVideoLink] = useState('');
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        
+        try {
+          const response = await axios.post('/vos', { text: videoLink });
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
+
     return (
         <Fragment>
             <NavBar />
@@ -13,7 +28,7 @@ const Main = () => {
                 <h1>Video Content Search</h1>
                 <p>The leading AI-powered video content search platform.</p>
                 <section>
-                    <UploadVideo/>
+                    <UploadVideo />
                     <input type="text" id={styles.textQuery} placeholder="Write your text here..." />
                     <div className={styles.container}>
                         {/* start search type radio buttons */}
@@ -28,7 +43,7 @@ const Main = () => {
                             {/* end video-radio button */}
                         </div>
                         {/* end search type radio buttons */}
-                        <button>Search</button>
+                        <button onClick={handleSubmit}>Search</button>
                     </div>
 
                 </section>
