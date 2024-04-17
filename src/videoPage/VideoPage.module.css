@@ -1,0 +1,23 @@
+iframe {
+    width: 50vw;
+    height: 40vh;
+}
+
+main ul {
+    width: 50vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+main ul li {
+    color: var(--blue-color);
+}
+
+main ul li:hover {
+    text-decoration: underline;
+}
+
+
+
+

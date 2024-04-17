@@ -1,0 +1,12 @@
+/* start footer */
+footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: -1000;
+}
+
+footer > img {
+  width: 100%;
+}
+/* end footer */

@@ -20,12 +20,12 @@ main > p {
 
 /* start section */
 section {
-    margin: 0 8vw;
+  margin: 0 8vw;
 }
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 /* start text input style */
 #textQuery {
@@ -44,7 +44,18 @@ section {
   font-size: 20px;
 }
 
-#textQuery:focus {
+#videoLink {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 4%);
+  border: 2px solid;
+  border-image: linear-gradient(45deg, var(--blue-color), var(--green-color)) 1 100%;
+  border-image-slice: 1;
+  padding: 15px;
+  margin-bottom: 15px;
+  font-size: 20px;
+}
+
+#textQuery:focus, #videoLink:focus {
   outline: none;
 }
 /* end text input style */
@@ -68,15 +79,15 @@ button {
 }
 /* end section */
 
-/* start footer */
-footer {
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  z-index: -1000;
+/* start error section */
+.errorMessage > p {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f93d5c36;
+  border: 2px solid #f93d5c;
+  border-radius: 10px;
+  text-align: center;
 }
+/* end error section */
 
-footer > img {
-  width: 100%;
-}
-/* end footer */
+
