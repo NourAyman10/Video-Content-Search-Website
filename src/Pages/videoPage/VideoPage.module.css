@@ -1,6 +1,7 @@
 iframe {
     width: 50vw;
     height: 40vh;
+    border: none;
 }
 
 main ul {

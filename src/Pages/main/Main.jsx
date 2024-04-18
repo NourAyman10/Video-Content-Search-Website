@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from "./Main.module.css"
-import NavBar from '../components/navBar/NavBar'
-import RadioButton from '../components/radioButton/RadioButton'
-import Footer from '../components/footer/Footer';
+import RadioButton from '../../components/radioButton/RadioButton'
+import MainLayout from '../../layout/MainLayout'
 
 const Main = () => {
+    const navigate = useNavigate();
     const [videoLink, setVideoLink] = useState('');
     const [textQuery, setTextQuery] = useState('');
     const [searchStatus, setSearchStatus] = useState('');
@@ -37,13 +38,13 @@ const Main = () => {
             } catch (error) {
                 console.error(error);
             }
+            navigate("/Video-Content-Search-Website/VideoPage", {replace: true, state:{videoLink}})
         }
     };
 
     return (
         <Fragment>
-            <NavBar />
-            <main>
+            <MainLayout>
                 <h1>Video Content Search</h1>
                 <p>The leading AI-powered video content search platform.</p>
                 <section>
@@ -82,8 +83,7 @@ const Main = () => {
                         {errorMessage && <p>{errorMessage}</p>}
                     </div>
                 </section>
-            </main>
-            <Footer/>
+            </MainLayout>
         </Fragment>
     )
 }

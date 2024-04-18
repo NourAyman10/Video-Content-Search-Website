@@ -1,40 +1,42 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useRef, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import styles from "./VideoPage.module.css"
-import NavBar from '../components/navBar/NavBar'
-import Footer from '../components/footer/Footer'
-import TextQuery from '../components/textQuery/TextQuery'
+import TextQuery from '../../components/textQuery/TextQuery'
+import MainLayout from '../../layout/MainLayout'
 
-const VideoPage = ({ videoSrc }) => {
+const VideoPage = () => {
+    const location = useLocation();
+    const videoSrcLink = useRef('');
     const [textQuery, setTextQuery] = useState('');
-    const [videoSrcLink, setVideoSrcLink] = useState('');
 
     const timestamps = [30, 60, 120, 180];
 
     const convertToEmbeddedSrc = (normalSrc) => {
         const videoId = normalSrc.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|v\/|embed\/|.*[\/\?&]v=))([^#\&\?]*).*/)?.[1];
         if (videoId) {
-            return `https://www.youtube.com/embed/${videoId}`;
+            return `https://www.youtube.com/embed/${videoId}?start=0`;
         }
         return normalSrc;
     }
 
-    const updateVideoSrcLink = () => {
-        setVideoSrcLink('')
+    const updateVideoSrcLink = (second) => {
+        const link = videoSrcLink.current.src;
+        const replacedText = link.replace(/start=\d+/g, `start=${second}`);
+        videoSrcLink.current.src = replacedText;
     }
 
-    // useEffect(() => {
-    //     const embeddedSrc = convertToEmbeddedSrc(videoSrc);
-    //     setVideoSrcLink(embeddedSrc);
-    // }, []);
+    useEffect(() => {
+        const embeddedSrc = convertToEmbeddedSrc(location.state.videoLink);
+        videoSrcLink.current.src = embeddedSrc;
+    }, [location.state.videoLink]);
 
     return (
         <Fragment>
-            <NavBar />
-
-            <main>
+            <MainLayout>
                 <TextQuery value={textQuery} onChange={(event) => setTextQuery(event.target.value)} />
                 <section>
-                    <iframe frameBorder="0"
+                    <iframe
+                        ref={videoSrcLink}
                         src={videoSrcLink}
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -42,16 +44,13 @@ const VideoPage = ({ videoSrc }) => {
                     </iframe>
                 </section>
                 <ul>
-                    {timestamps.map((second, key) => {
+                    {timestamps.map((second, index) => {
                         return (
-                            <Fragment>
-                                <li key={key} onClick={updateVideoSrcLink}>{second}</li>
-                            </Fragment>
+                            <li key={index} onClick={() => updateVideoSrcLink(second)}>{second}</li>
                         )
                     })}
                 </ul>
-            </main>
-            <Footer />
+            </MainLayout>
         </Fragment>
     )
 }
