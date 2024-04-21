@@ -19,5 +19,9 @@ li {
     list-style: none;
     font-size: 3vh;
     cursor: pointer;
+    
+}
+li > * {
+    text-decoration: none;
 }
 /* end navegation bar */

@@ -9,12 +9,17 @@ import './index.css';
 import App from './App';
 import Main from './Pages/main/Main';
 import VideoPage from './Pages/videoPage/VideoPage';
+import Loading from './Pages/loadingPage/Loading';
 
 
 const router = createBrowserRouter([
   {
     path: "/Video-Content-Search-Website",
     element: <Main />,
+  },
+  {
+    path: "/Video-Content-Search-Website/Loading",
+    element: <Loading />,
   },
   {
     path: "/Video-Content-Search-Website/VideoPage",

@@ -10,9 +10,9 @@ const NavBar = () => {
             <img src={logoImg} alt="logo" />
             <ul>
                 <li><Link to="/Video-Content-Search-Website">Home</Link></li>
-                {/* <li>Usage</li>
+                <li>Usage</li>
                 <li>About</li>
-                <li>Contacts</li> */}
+                <li>Contacts</li>
             </ul>
         </nav>
     </Fragment>

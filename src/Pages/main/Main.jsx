@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from "./Main.module.css"
 import RadioButton from '../../components/radioButton/RadioButton'
 import MainLayout from '../../layout/MainLayout'
+import Loading from '../loadingPage/Loading';
 
 const Main = () => {
     const navigate = useNavigate();
@@ -11,6 +12,9 @@ const Main = () => {
     const [textQuery, setTextQuery] = useState('');
     const [searchStatus, setSearchStatus] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    let videoPreviewLink = ''
+    let timestamps = []
 
     const onSearchStatusChange = (event) => {
         setSearchStatus(event.target.value)
@@ -33,18 +37,24 @@ const Main = () => {
         event.preventDefault();
         if (handleErrorMessage(videoLink, textQuery, searchStatus)) {
             try {
+                navigate("/Video-Content-Search-Website/Loading", {replace: true})
+                setIsLoading(true);
                 const response = await axios.post('/vos', { videoLink: videoLink, textQuery: textQuery, searchStatus: searchStatus });
                 console.log(response.data);
+                videoPreviewLink = response.data["videoPreviewLink"]
+                timestamps = response.data["timestamps"]
+                setIsLoading(false);
             } catch (error) {
                 console.error(error);
             }
-            navigate("/Video-Content-Search-Website/VideoPage", {replace: true, state:{videoLink}})
+            navigate("/Video-Content-Search-Website/VideoPage", {replace: true, state:{searchStatus, videoPreviewLink, timestamps}})
         }
     };
 
     return (
         <Fragment>
             <MainLayout>
+                {/* {isLoading && <Loading />} */}
                 <h1>Video Content Search</h1>
                 <p>The leading AI-powered video content search platform.</p>
                 <section>

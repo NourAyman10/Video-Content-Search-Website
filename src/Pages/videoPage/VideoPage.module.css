@@ -1,24 +1,31 @@
 iframe {
-    width: 50vw;
-    height: 40vh;
-    border: none;
+  width: 50vw;
+  height: 40vh;
+  border: none;
+}
+
+section h3 {
+    margin: 10px 0;
 }
 
 main ul {
-    width: 50vw;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+  width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
 }
 
 main ul li {
-    color: var(--blue-color);
+  color: var(--blue-color);
+  border: 2px solid;
+  border-image: linear-gradient(45deg, var(--blue-color), var(--green-color)) 1
+    100%;
+  border-image-slice: 1;
+  padding: 2px 10px;
 }
 
 main ul li:hover {
-    text-decoration: underline;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.142);
 }
-
-
-
-

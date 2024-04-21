@@ -1,4 +1,4 @@
-import React, { Children, Fragment } from 'react'
+import React, { Fragment } from 'react'
 import NavBar from '../components/navBar/NavBar'
 import Footer from '../components/footer/Footer'
 
